@@ -1,0 +1,74 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-10">
+        <div class="hero-section text-center animate__animated animate__fadeIn">
+            <h1 class="display-4 fw-bold">SubZero</h1>
+            <p class="lead mt-3">
+                Professional security tool to detect subdomains vulnerable to takeover attacks
+            </p>
+            <div class="d-flex justify-content-center mt-4">
+                <div class="feature-badge me-3">
+                    <i class="bi bi-search"></i> Advanced Enumeration
+                </div>
+                <div class="feature-badge me-3">
+                    <i class="bi bi-shield-check"></i> Vulnerability Detection
+                </div>
+            </div>
+        </div>
+        
+        <div class="card shadow-lg mt-5 animate__animated animate__fadeInUp">
+            <div class="card-header bg-gradient">
+                <h2 class="text-center mb-0">Start Scanning</h2>
+            </div>
+            <div class="card-body p-4">
+                <form action="{{ url_for('scan') }}" method="post" class="mt-2">
+                    <div class="mb-4">
+                        <label for="domain" class="form-label fw-bold">Domain to Scan</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-globe"></i></span>
+                            <input type="text" class="form-control form-control-lg" id="domain" name="domain" 
+                                   placeholder="example.com" required>
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                <i class="bi bi-search me-2"></i> Start Scan
+                            </button>
+                        </div>
+                        <div class="form-text">Enter a domain without http:// or https://</div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <div class="row mt-5">
+            <div class="col-md-4 mb-4">
+                <div class="feature-card animate__animated animate__fadeInUp">
+                    <div class="feature-icon">
+                        <i class="bi bi-diagram-3"></i>
+                    </div>
+                    <h3>Subdomain Enumeration</h3>
+                    <p>Leverages Subfinder and Amass to discover all subdomains associated with the target domain.</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="feature-card animate__animated animate__fadeInUp" style="animation-delay: 0.2s">
+                    <div class="feature-icon">
+                        <i class="bi bi-shield-exclamation"></i>
+                    </div>
+                    <h3>Vulnerability Detection</h3>
+                    <p>Identifies misconfigured or deprovisioned services like AWS S3, GitHub Pages, or Heroku.</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="feature-card animate__animated animate__fadeInUp" style="animation-delay: 0.4s">
+                    <div class="feature-icon">
+                        <i class="bi bi-file-earmark-text"></i>
+                    </div>
+                    <h3>Detailed Reporting</h3>
+                    <p>Provides comprehensive reports with screenshots, making it ideal for bug bounty submissions.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

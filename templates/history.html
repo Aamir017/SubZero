@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="history-header animate__animated animate__fadeIn">
+    <h2><i class="bi bi-clock-history me-2"></i>Scan History</h2>
+    <p class="lead">View your previous subdomain takeover scans</p>
+</div>
+
+{% if history %}
+    <div class="card shadow-lg mt-4 animate__animated animate__fadeInUp">
+        <div class="card-header bg-gradient">
+            <h3 class="mb-0">Previous Scans</h3>
+        </div>
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover mb-0">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Domain</th>
+                            <th>Date & Time</th>
+                            <th>Subdomains</th>
+                            <th>Vulnerable</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for entry in history|reverse %}
+                        <tr>
+                            <td>{{ entry.domain }}</td>
+                            <td>{{ entry.timestamp }}</td>
+                            <td>{{ entry.subdomains_count }}</td>
+                            <td>
+                                {% if entry.vulnerable_count > 0 %}
+                                    <span class="badge bg-danger">{{ entry.vulnerable_count }} Vulnerable</span>
+                                {% else %}
+                                    <span class="badge bg-success">Secure</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <a href="{{ url_for('history_detail', index=loop.index0) }}" class="btn btn-primary btn-sm">
+                                    <i class="bi bi-eye me-1"></i> View Details
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% else %}
+    <div class="alert alert-info animate__animated animate__fadeIn">
+        <i class="bi bi-info-circle-fill me-2"></i>
+        <p>No scan history found. Start by scanning a domain.</p>
+    </div>
+    <a href="{{ url_for('index') }}" class="btn btn-primary">
+        <i class="bi bi-search me-2"></i> Start a New Scan
+    </a>
+{% endif %}
+{% endblock %}
