@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, flash
 from scanner import SubdomainTakeoverScanner, get_scan_history
 import os
 
-app = Flask(__name__, template_folder='docs')
+app = Flask(__name__, template_folder='docs', static_folder='docs/static')
 app.secret_key = os.urandom(24)
 
 @app.route('/')

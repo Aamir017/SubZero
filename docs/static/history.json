@@ -1,0 +1,396 @@
+[
+  {
+    "domain": "discord.com",
+    "timestamp": "2025-04-19 23:33:50",
+    "subdomains_count": 5,
+    "vulnerable_count": 0,
+    "results": [
+      {
+        "subdomain": "blog.discord.com",
+        "cname": null,
+        "status_code": 200,
+        "service": "Unknown",
+        "error_message": null,
+        "screenshot": null,
+        "vulnerable": false
+      },
+      {
+        "subdomain": "www.discord.com",
+        "cname": null,
+        "status_code": 200,
+        "service": "Unknown",
+        "error_message": null,
+        "screenshot": null,
+        "vulnerable": false
+      },
+      {
+        "subdomain": "app.discord.com",
+        "cname": null,
+        "status_code": 200,
+        "service": "Unknown",
+        "error_message": null,
+        "screenshot": null,
+        "vulnerable": false
+      },
+      {
+        "subdomain": "discord.com",
+        "cname": null,
+        "status_code": 200,
+        "service": "Unknown",
+        "error_message": null,
+        "screenshot": null,
+        "vulnerable": false
+      },
+      {
+        "subdomain": "support.discord.com",
+        "cname": null,
+        "status_code": 403,
+        "service": "Unknown",
+        "error_message": null,
+        "screenshot": null,
+        "vulnerable": false
+      }
+    ]
+  },
+  {
+    "domain": "discord.com",
+    "timestamp": "2025-04-19 23:37:09",
+    "subdomains_count": 37,
+    "vulnerable_count": 0,
+    "results": [
+      {
+        "subdomain": "static.discord.com",
+        "cname": null,
+        "status_code": 404,
+        "service": "Unknown",
+        "error_message": null,
+        "screenshot": null,
+        "vulnerable": false
+      },
+      {
+        "subdomain": "safety.discord.com",
+        "cname": null,
+        "status_code": null,
+        "service": "Unknown",
+        "error_message": null,
+        "screenshot": null,
+        "vulnerable": false
+      },
+      {
+        "subdomain": "snowsgiving-tale-2022-en.discord.com",
+        "cname": null,
+        "status_code": 200,
+        "service": "Unknown",
+        "error_message": null,
+        "screenshot": null,
+        "vulnerable": false
+      },
+      {
+        "subdomain": "static-edge.discord.com",
+        "cname": null,
+        "status_code": 404,
+        "service": "Unknown",
+        "error_message": null,
+        "screenshot": null,
+        "vulnerable": false
+      },
+      {
+        "subdomain": "snowsgiving-tale-2022-es-es.discord.com",
+        "cname": null,
+        "status_code": 200,
+        "service": "Unknown",
+        "error_message": null,
+        "screenshot": null,
+        "vulnerable": false
+      },
+      {
+        "subdomain": "discord.com",
+        "cname": null,
+        "status_code": 200,
+        "service": "Unknown",
+        "error_message": null,
+        "screenshot": null,
+        "vulnerable": false
+      },
+      {
+        "subdomain": "events.discord.com",
+        "cname": "d.sni.global.fastly.net",
+        "status_code": 403,
+        "service": "Fastly",
+        "error_message": null,
+        "screenshot": null,
+        "vulnerable": false
+      },
+      {
+        "subdomain": "email.creators.discord.com",
+        "cname": null,
+        "status_code": null,
+        "service": "Unknown",
+        "error_message": null,
+        "screenshot": null,
+        "vulnerable": false
+      },
+      {
+        "subdomain": "snowsgiving-tale-2022-fr.discord.com",
+        "cname": null,
+        "status_code": 200,
+        "service": "Unknown",
+        "error_message": null,
+        "screenshot": null,
+        "vulnerable": false
+      },
+      {
+        "subdomain": "snowsgiving-tale-2022-ja.discord.com",
+        "cname": null,
+        "status_code": 200,
+        "service": "Unknown",
+        "error_message": null,
+        "screenshot": null,
+        "vulnerable": false
+      },
+      {
+        "subdomain": "snowsgiving-tale-2022-zh-cn.discord.com",
+        "cname": null,
+        "status_code": 200,
+        "service": "Unknown",
+        "error_message": null,
+        "screenshot": null,
+        "vulnerable": false
+      },
+      {
+        "subdomain": "snowsgiving-tale-2022-pt-br.discord.com",
+        "cname": null,
+        "status_code": 200,
+        "service": "Unknown",
+        "error_message": null,
+        "screenshot": null,
+        "vulnerable": false
+      },
+      {
+        "subdomain": "snowsgiving-tale-2022-tr.discord.com",
+        "cname": null,
+        "status_code": 200,
+        "service": "Unknown",
+        "error_message": null,
+        "screenshot": null,
+        "vulnerable": false
+      },
+      {
+        "subdomain": "snowsgiving-tale-2022-sv-se.discord.com",
+        "cname": null,
+        "status_code": 200,
+        "service": "Unknown",
+        "error_message": null,
+        "screenshot": null,
+        "vulnerable": false
+      },
+      {
+        "subdomain": "support-apps.discord.com",
+        "cname": "discordappssupport.zendesk.com",
+        "status_code": 403,
+        "service": "Zendesk",
+        "error_message": null,
+        "screenshot": null,
+        "vulnerable": false
+      },
+      {
+        "subdomain": "snowsgiving-tale-2022-nl.discord.com",
+        "cname": null,
+        "status_code": 200,
+        "service": "Unknown",
+        "error_message": null,
+        "screenshot": null,
+        "vulnerable": false
+      },
+      {
+        "subdomain": "snowsgiving-tale-2022-it.discord.com",
+        "cname": null,
+        "status_code": 200,
+        "service": "Unknown",
+        "error_message": null,
+        "screenshot": null,
+        "vulnerable": false
+      },
+      {
+        "subdomain": "prod-wf1.discord.com",
+        "cname": "proxy-ssl.webflow.com",
+        "status_code": 200,
+        "service": "Unknown",
+        "error_message": null,
+        "screenshot": null,
+        "vulnerable": false
+      },
+      {
+        "subdomain": "snowsgiving-tale-2022-de.discord.com",
+        "cname": null,
+        "status_code": 200,
+        "service": "Unknown",
+        "error_message": null,
+        "screenshot": null,
+        "vulnerable": false
+      },
+      {
+        "subdomain": "snowsgiving-tale-2022-zh-tw.discord.com",
+        "cname": null,
+        "status_code": 200,
+        "service": "Unknown",
+        "error_message": null,
+        "screenshot": null,
+        "vulnerable": false
+      },
+      {
+        "subdomain": "www.discord.com",
+        "cname": null,
+        "status_code": 200,
+        "service": "Unknown",
+        "error_message": null,
+        "screenshot": null,
+        "vulnerable": false
+      },
+      {
+        "subdomain": "blog.discord.com",
+        "cname": null,
+        "status_code": 200,
+        "service": "Unknown",
+        "error_message": null,
+        "screenshot": null,
+        "vulnerable": false
+      },
+      {
+        "subdomain": "creator-support.discord.com",
+        "cname": "discordcreatorsupport.zendesk.com",
+        "status_code": 403,
+        "service": "Zendesk",
+        "error_message": null,
+        "screenshot": null,
+        "vulnerable": false
+      },
+      {
+        "subdomain": "androiddiag.discord.com",
+        "cname": null,
+        "status_code": 200,
+        "service": "Unknown",
+        "error_message": null,
+        "screenshot": null,
+        "vulnerable": false
+      },
+      {
+        "subdomain": "snowsgiving-tale-2022.discord.com",
+        "cname": null,
+        "status_code": 200,
+        "service": "Unknown",
+        "error_message": null,
+        "screenshot": null,
+        "vulnerable": false
+      },
+      {
+        "subdomain": "prod-wf3.discord.com",
+        "cname": "proxy-ssl.webflow.com",
+        "status_code": 200,
+        "service": "Unknown",
+        "error_message": null,
+        "screenshot": null,
+        "vulnerable": false
+      },
+      {
+        "subdomain": "snowgiving-2022.discord.com",
+        "cname": null,
+        "status_code": null,
+        "service": "Unknown",
+        "error_message": null,
+        "screenshot": null,
+        "vulnerable": false
+      },
+      {
+        "subdomain": "snowsgiving-tale-2022-ko.discord.com",
+        "cname": null,
+        "status_code": 200,
+        "service": "Unknown",
+        "error_message": null,
+        "screenshot": null,
+        "vulnerable": false
+      },
+      {
+        "subdomain": "app.discord.com",
+        "cname": null,
+        "status_code": 200,
+        "service": "Unknown",
+        "error_message": null,
+        "screenshot": null,
+        "vulnerable": false
+      },
+      {
+        "subdomain": "www.blog.discord.com",
+        "cname": null,
+        "status_code": null,
+        "service": "Unknown",
+        "error_message": null,
+        "screenshot": null,
+        "vulnerable": false
+      },
+      {
+        "subdomain": "snowsgiving-tale-2022-da.discord.com",
+        "cname": null,
+        "status_code": 200,
+        "service": "Unknown",
+        "error_message": null,
+        "screenshot": null,
+        "vulnerable": false
+      },
+      {
+        "subdomain": "snowsgiving-tale-2022-pl.discord.com",
+        "cname": null,
+        "status_code": 200,
+        "service": "Unknown",
+        "error_message": null,
+        "screenshot": null,
+        "vulnerable": false
+      },
+      {
+        "subdomain": "*.discord.com",
+        "cname": null,
+        "status_code": null,
+        "service": "Unknown",
+        "error_message": null,
+        "screenshot": null,
+        "vulnerable": false
+      },
+      {
+        "subdomain": "support.discord.com",
+        "cname": null,
+        "status_code": 403,
+        "service": "Unknown",
+        "error_message": null,
+        "screenshot": null,
+        "vulnerable": false
+      },
+      {
+        "subdomain": "prod-wf2.discord.com",
+        "cname": "proxy-ssl.webflow.com",
+        "status_code": 200,
+        "service": "Unknown",
+        "error_message": null,
+        "screenshot": null,
+        "vulnerable": false
+      },
+      {
+        "subdomain": "support-dev.discord.com",
+        "cname": "discorddevs.zendesk.com",
+        "status_code": 403,
+        "service": "Zendesk",
+        "error_message": null,
+        "screenshot": null,
+        "vulnerable": false
+      },
+      {
+        "subdomain": "snowsgiving-tale-2022-ru.discord.com",
+        "cname": null,
+        "status_code": 200,
+        "service": "Unknown",
+        "error_message": null,
+        "screenshot": null,
+        "vulnerable": false
+      }
+    ]
+  }
+]
