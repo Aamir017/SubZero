@@ -19,8 +19,12 @@ class SubdomainTakeoverScanner:
         # Ensure screenshot directory exists
         os.makedirs(self.screenshot_dir, exist_ok=True)
     
-    def run_scan(self):
-        """Run the complete subdomain takeover scan process"""
+    def run_scan(self, include_non_vulnerable=True):
+        """Run the complete subdomain takeover scan process
+        
+        Args:
+            include_non_vulnerable: Whether to include non-vulnerable subdomains in results
+        """
         print(f"Starting scan for {self.domain}")
         
         # Step 1: Enumerate subdomains
@@ -39,6 +43,7 @@ class SubdomainTakeoverScanner:
             ]
         
         # Step 2: Process each subdomain
+        total_subdomains = len(subdomains)
         for subdomain in subdomains:
             # Process for vulnerability
             result = self._process_subdomain(subdomain)
@@ -46,7 +51,7 @@ class SubdomainTakeoverScanner:
             if result:
                 # This is a vulnerable subdomain
                 self.results.append(result)
-            else:
+            elif include_non_vulnerable:
                 # Add non-vulnerable subdomain to results too
                 dns_info = resolve_dns(subdomain)
                 http_info = analyze_http_response(subdomain)
@@ -76,7 +81,11 @@ class SubdomainTakeoverScanner:
                     'vulnerable': False
                 })
         
-        print(f"Scan completed. Found {len(self.results)} subdomains, including potentially vulnerable ones")
+        vulnerable_count = sum(1 for result in self.results if result.get('vulnerable'))
+        if include_non_vulnerable:
+            print(f"Scan completed. Found {len(self.results)} subdomains, including {vulnerable_count} potentially vulnerable ones")
+        else:
+            print(f"Scan completed. Found {vulnerable_count} vulnerable subdomains out of {total_subdomains} total subdomains")
         
         # Save scan to history
         self._save_to_history()
@@ -89,10 +98,6 @@ class SubdomainTakeoverScanner:
         
         # Step 1: DNS resolution
         dns_info = resolve_dns(subdomain)
-        
-        # Skip if no CNAME or if properly resolved
-        if not dns_info.get('cname') or not dns_info.get('vulnerable_dns'):
-            return None
         
         # Step 2: HTTP response analysis
         http_info = analyze_http_response(subdomain)
@@ -113,35 +118,39 @@ class SubdomainTakeoverScanner:
                 screenshot_path = None
         
         # Determine vulnerability status
-        is_vulnerable = self._check_vulnerability(dns_info, http_info)
+        vulnerability_status = self._check_vulnerability(dns_info, http_info)
         
-        # Prepare result
-        if is_vulnerable:
-            return {
-                'subdomain': subdomain,
-                'cname': dns_info.get('cname', 'N/A'),
-                'status_code': http_info.get('status_code', 'N/A'),
-                'service': self._identify_service(dns_info.get('cname', '')),
-                'error_message': http_info.get('error_message', 'N/A'),
-                'screenshot': screenshot_path,
-                'vulnerable': is_vulnerable
-            }
+        # Create result dictionary
+        result = {
+            'subdomain': subdomain,
+            'cname': dns_info.get('cname', 'N/A'),
+            'status_code': http_info.get('status_code', 'N/A'),
+            'service': self._identify_service(dns_info.get('cname', '')),
+            'error_message': http_info.get('error_message', 'N/A'),
+            'screenshot': screenshot_path,
+            'vulnerability_status': vulnerability_status,
+            'vulnerable': vulnerability_status != 'safe'  # For backward compatibility
+        }
         
-        return None
+        return result
     
     def _check_vulnerability(self, dns_info, http_info):
-        """Determine if a subdomain is vulnerable to takeover"""
+        """Determine if a subdomain is vulnerable to takeover
+        
+        Returns:
+            str: 'vulnerable', 'potentially_unsafe', or 'safe'
+        """
         # Check for common vulnerability indicators
         
         # DNS indicators
         if dns_info.get('vulnerable_dns'):
             # NXDOMAIN or dangling CNAME
-            return True
+            return 'vulnerable'
         
         # HTTP indicators
         if http_info.get('status_code') in [404, 503]:
             # Common error status codes
-            return True
+            return 'vulnerable'
         
         # Check for service-specific error messages
         error_patterns = [
@@ -156,9 +165,24 @@ class SubdomainTakeoverScanner:
         if http_info.get('error_message'):
             for pattern in error_patterns:
                 if pattern.lower() in http_info.get('error_message', '').lower():
-                    return True
+                    return 'vulnerable'
         
-        return False
+        # Check for typosquatting domains
+        original_domain = self.domain.replace('0', 'o').replace('1', 'l').replace('5', 's')
+        if original_domain != self.domain and original_domain in ['google.com', 'facebook.com', 'microsoft.com', 'apple.com', 'amazon.com']:
+            return 'vulnerable'
+        
+        # Check for conditions that make us uncertain
+        # If we don't have enough information, mark as potentially unsafe
+        if not http_info.get('status_code') or not dns_info:
+            return 'potentially_unsafe'
+        
+        # If the domain has unusual status codes or error messages
+        if http_info.get('status_code') not in [200, 301, 302, 307, 308]:
+            return 'potentially_unsafe'
+        
+        # If we've reached here, we have enough information to consider it safe
+        return 'safe'
     
     def _identify_service(self, cname):
         """Identify the service based on CNAME"""
@@ -218,6 +242,18 @@ class SubdomainTakeoverScanner:
         except Exception as e:
             print(f"Error saving to history: {str(e)}")
 
+    def get_vulnerable_subdomains(self):
+        """Return only the confirmed vulnerable subdomains from the results"""
+        return [result for result in self.results if result.get('vulnerability_status') == 'vulnerable']
+    
+    def get_potentially_unsafe_subdomains(self):
+        """Return only the potentially unsafe subdomains from the results"""
+        return [result for result in self.results if result.get('vulnerability_status') == 'potentially_unsafe']
+        
+    def get_safe_subdomains(self):
+        """Return only the confirmed safe subdomains from the results"""
+        return [result for result in self.results if result.get('vulnerability_status') == 'safe']
+
 def get_scan_history():
     """Get all scan history entries"""
     history_file = os.path.join(os.path.dirname(os.path.abspath(__file__)),
@@ -233,3 +269,10 @@ def get_scan_history():
     except Exception as e:
         print(f"Error loading history: {str(e)}")
         return []
+
+
+def scan_vulnerable_only(domain):
+    """Run a scan that only returns vulnerable subdomains"""
+    scanner = SubdomainTakeoverScanner(domain)
+    scanner.run_scan(include_non_vulnerable=False)
+    return scanner.results
