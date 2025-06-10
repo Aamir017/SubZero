@@ -22,7 +22,9 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    - name: 🧪 Run test: Is app alive?
+    - name: 🧪 Run test: Start app and test response
       run: |
-        python app.py & sleep 5
-        curl -I http://localhost:5000 || echo "❌ App did not respond"
+        nohup python app.py > log.txt 2>&1 &
+        sleep 5
+        curl -I http://127.0.0.1:5000 || echo "❌ App did not respond"
+
