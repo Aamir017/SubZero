@@ -1,11 +1,12 @@
-name: Build and Push Docker Image
+name: Docker
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
 
 jobs:
-  docker:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -27,4 +28,3 @@ jobs:
           context: .
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/subzero:latest
-
