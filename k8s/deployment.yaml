@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: subzero-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: subzero
+  template:
+    metadata:
+      labels:
+        app: subzero
+    spec:
+      containers:
+      - name: subzero
+        image: aamir017/subzero:latest  # Your Docker Hub image
+        ports:
+        - containerPort: 5000
